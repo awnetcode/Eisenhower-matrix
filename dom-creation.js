@@ -3,7 +3,7 @@ const mainContent = document.querySelector("#root");
 const createQuartElement = (quartName, quartText) =>{
     const quarter = document.createElement("div");
     quarter.innerText = quartText
-    quarter.classList.add(quartName);
+    quarter.classList.add(quartName, "quart-shiny");
     return quarter;
 }
 
@@ -20,6 +20,7 @@ const createMatrix = () =>{
 }
 
 createMatrix();
+
 
 //Zrobić tę wspaniałą stronę, która pomoże w końcu skupić się na tym co ważne, i wszystkie prośby innych ludzi wyjebie do kosza, gdzie ich miejsce.
 //A jeśli overflow na tym polu się wydarzy, natenczas się scroll po prawej pojawi.
