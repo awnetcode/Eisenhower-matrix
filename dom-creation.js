@@ -3,7 +3,7 @@ const mainContent = document.querySelector("#root");
 const createQuartElement = (quartName, quartText) =>{
     const quarter = document.createElement("div");
     quarter.innerText = quartText
-    quarter.classList.add(quartName, "quart-shiny");
+    quarter.classList.add(quartName, "matrix-quart");
     return quarter;
 }
 

@@ -34,6 +34,7 @@ body{
 
 .page-header h1{
     font-size: 2.5rem;
+    text-align: center;
 }
 
 #task{
@@ -78,7 +79,12 @@ body{
     border: none;
     border-radius: .5rem;
     color: white;
-    box-shadow: var(--main-shadow);
+    cursor: pointer;
+    border: 2px solid silver;
+}
+
+.task-button:hover{
+    animation: button-change 2s infinite  linear;
 }
 
 .matrix{
@@ -101,32 +107,53 @@ body{
 
 .first-quart{
     background: var(--first-quart-background);
-    opacity: .8;
+    opacity: .5;
 }
 
 .second-quart{
     background: var(--second-quart-background);
-    opacity: .8;
+    opacity: .5;
 }
 
 .third-quart{
     background: var(--third-quart-background);
-    opacity: .8;
+    opacity: .5;
 }
 
 .fourth-quart{
     background: var(--fourth-quart-background);
-    opacity: .8;
+    opacity: .5;
 }
 
-/* .quart-shiny{
+.quart-shiny{
     box-shadow: var(--main-shadow);
     opacity: 1;
-} */
+} 
 
 @keyframes task-slide{
     from {top:0;}
     to   {top: 100%;}
+}
+
+@keyframes button-change{
+    from {background: linear-gradient(150deg, var(--main-background) , rgb(95, 93, 93), var(--main-background));}
+    to {
+        background: linear-gradient(150deg, rgb(95, 93, 93), var(--main-background), rgb(95, 93, 93));
+        box-shadow: var(--main-shadow);
+    }
+}
+
+@media only screen and (max-width:800px){
+
+    #task{
+        max-width: 90%;
+    }
+
+    .matrix div{
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+    }
 }
 
 
