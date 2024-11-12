@@ -20,7 +20,7 @@
 
 body{
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(150deg, var(--main-background) , rgb(95, 93, 93), var(--main-background));
     display: flex;
     flex-direction: column;
@@ -69,7 +69,7 @@ body{
 
 .task-sent-active{
     display: block;
-    animation: task-slide 3s ease;
+    animation: task-slide 2s ease;
 }
 
 .task-button{
