@@ -41,7 +41,8 @@ const addNewTask = () =>{
     const taskValue = taskElement.value;
 
     if(taskValue !==''){
-        const newTask = document.createElement("li")
+        const newTask = document.createElement("li");
+        newTask.classList.add("task-list-li");
         newTask.innerText = taskValue;
         taskArea.appendChild(newTask);
         taskElement.value = '';
@@ -49,9 +50,40 @@ const addNewTask = () =>{
     }else{
         taskElement.placeholder = 'Wprowadź coś...';
     }
-    
-
 }
+
+const saveAtLocalStorage = () =>{
+    const taskListArray = document.querySelectorAll(".task-list-li");
+    taskListArray.forEach((taskLink, index)=>{
+        const taskContent = taskLink.textContent;
+        localStorage.setItem(index, taskContent);
+    })
+    console.log(taskListArray);
+}
+
+
 
 taskButton.addEventListener("click", startSendingTask);
 
+document.addEventListener("keydown", (event)=>{
+    if (event.key === 'Enter') {
+        startSendingTask();
+    }
+
+    if (event.key === 'Control'){
+        saveAtLocalStorage();
+    }
+})
+
+const getListFromLocalStorage = () => {
+    
+    for (let i = 0; i < localStorage.length-1; i++){
+        const task = localStorage.getItem(i);
+        const newTask = document.createElement("li");
+        newTask.classList.add("task-list-li");
+        newTask.innerText = task;
+        taskArea.appendChild(newTask);
+    }
+}
+
+getListFromLocalStorage();
