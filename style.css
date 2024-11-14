@@ -26,6 +26,7 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    row-gap: 1rem;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: silver;
@@ -53,8 +54,11 @@ body{
 
 .task-pipe{
     width: 10px;
-    height: 40%;
-    position: absolute;
+    height: 350px;
+    position: absolute; 
+    left: 50%;
+    transform: translate(-50%, -35%);
+    /* border: 1px solid white; */
 }
 
 .task-sent{
@@ -64,12 +68,12 @@ body{
     border-radius: 50%;
     box-shadow: var(--main-shadow);
     position: absolute;
-    display: none;
+    display: none; 
 }
 
 .task-sent-active{
     display: block;
-    animation: task-slide 2s ease;
+    animation: task-slide 3s ease;
 }
 
 .task-button{
@@ -85,6 +89,10 @@ body{
 
 .task-button:hover{
     animation: button-change 2s infinite  linear;
+}
+
+.hidden{
+    display: none;
 }
 
 .matrix{
@@ -128,11 +136,11 @@ body{
 .quart-shiny{
     box-shadow: var(--main-shadow);
     opacity: 1;
-} 
+}
 
 @keyframes task-slide{
     from {top:0;}
-    to   {top: 100%;}
+    to   {top: 200%;}
 }
 
 @keyframes button-change{

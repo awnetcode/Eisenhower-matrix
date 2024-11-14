@@ -19,8 +19,15 @@ const createMatrix = () =>{
     matrix.appendChild(createQuartElement("fourth-quart", "Niepilne i nieważne"));
 }
 
+const createTaskPipe = () =>{
+    const pipeElement = document.createElement("div");
+    const sentElement = document.createElement("div");
+    pipeElement.classList.add("task-pipe");
+    mainContent.prepend(pipeElement);
+
+    const pipe = document.querySelector(".task-pipe");
+    pipe.appendChild(sentElement).classList.add("task-sent");
+}
+
 createMatrix();
-
-
-//Zrobić tę wspaniałą stronę, która pomoże w końcu skupić się na tym co ważne, i wszystkie prośby innych ludzi wyjebie do kosza, gdzie ich miejsce.
-//A jeśli overflow na tym polu się wydarzy, natenczas się scroll po prawej pojawi.
+createTaskPipe();

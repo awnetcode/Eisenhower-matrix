@@ -1,8 +1,15 @@
-const taskButton = document.querySelector(".task-button");
+const taskButton = document.querySelector(".task-button:first-child");
+const matrixButton = document.querySelector(".task-button:last-child");
+const rootElement = document.querySelector("#root");
 const quarters = document.querySelectorAll(".matrix-quart");
 const taskElement = document.querySelector("#task");
 const taskArea = document.querySelector(".task-area"); 
 const taskPipe = document.querySelector(".task-pipe");
+
+const showHideMatrix = () =>{
+    rootElement.classList.toggle("hidden");
+    matrixButton.textContent = "Pokaż matrycę"
+}
 
 const startSendingTask = () =>{
     const taskSent = document.querySelector(".task-sent");
@@ -11,6 +18,7 @@ const startSendingTask = () =>{
         taskSent.classList.remove("task-sent-active");
         selectQuart();
     }, 800) 
+    addNewTask();
 }
 
 const selectQuart = () => {
@@ -33,7 +41,6 @@ const fourthQuartSelected = () =>{
     quarters[3].classList.add("quart-shiny");
     setTimeout(()=>{
         quarters[3].classList.remove("quart-shiny");
-        addNewTask();
     }, 1500)
 }
 
@@ -58,13 +65,10 @@ const saveAtLocalStorage = () =>{
         const taskContent = taskLink.textContent;
         localStorage.setItem(index, taskContent);
     })
-    console.log(taskListArray);
 }
 
-
-
 taskButton.addEventListener("click", startSendingTask);
-
+matrixButton.addEventListener("click", showHideMatrix);
 document.addEventListener("keydown", (event)=>{
     if (event.key === 'Enter') {
         startSendingTask();
@@ -87,3 +91,4 @@ const getListFromLocalStorage = () => {
 }
 
 getListFromLocalStorage();
+//localStorage.clear();
