@@ -85,10 +85,27 @@ body{
     color: white;
     cursor: pointer;
     border: 2px solid silver;
+    position: relative;
+    overflow: hidden;
 }
 
-.task-button:hover{
-    animation: button-change 2s infinite  linear;
+.task-button:hover .button-spark{
+    /* animation: button-change 2s infinite  linear; */
+    animation: spark-slide .5s  linear;
+    animation-delay: .5s;
+}
+
+.button-spark{
+    height: 150%;
+    background: white;
+    border: 5px solid white;
+    position: absolute;
+    top: -20%;
+    left: -40%;
+    transform: skew(120deg);
+    box-shadow: var(--main-shadow);
+    opacity: .8;
+    
 }
 
 .hidden{
@@ -149,6 +166,12 @@ body{
         background: linear-gradient(150deg, rgb(95, 93, 93), var(--main-background), rgb(95, 93, 93));
         box-shadow: var(--main-shadow);
     }
+}
+
+@keyframes spark-slide {
+    from {left: -100%;}
+    to {left: 150%;}
+    
 }
 
 @media only screen and (max-width:800px){

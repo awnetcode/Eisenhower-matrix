@@ -1,14 +1,18 @@
 const taskButton = document.querySelector(".task-button:first-child");
-const matrixButton = document.querySelector(".task-button:last-child");
+const matrixButton = document.querySelector(".task-button:nth-child(2)");
+const clearButton = document.querySelector(".task-button:nth-child(3)");
 const rootElement = document.querySelector("#root");
 const quarters = document.querySelectorAll(".matrix-quart");
 const taskElement = document.querySelector("#task");
 const taskArea = document.querySelector(".task-area"); 
 const taskPipe = document.querySelector(".task-pipe");
 
+
+let matrixActive = false;
 const showHideMatrix = () =>{
+    matrixActive = !matrixActive;
     rootElement.classList.toggle("hidden");
-    matrixButton.textContent = "Pokaż matrycę"
+    matrixActive == false ? matrixButton.textContent = "Pokaż matrycę" : matrixButton.textContent = "Ukryj matrycę";
 }
 
 const startSendingTask = () =>{
@@ -44,51 +48,53 @@ const fourthQuartSelected = () =>{
     }, 1500)
 }
 
-const addNewTask = () =>{
-    const taskValue = taskElement.value;
 
-    if(taskValue !==''){
-        const newTask = document.createElement("li");
-        newTask.classList.add("task-list-li");
-        newTask.innerText = taskValue;
-        taskArea.appendChild(newTask);
-        taskElement.value = '';
+const addNewTask = () => {
+    const taskValue = taskElement.value.trim();
+    if (taskValue !== '') {
+        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks.push(taskValue);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+
+        taskElement.value = ''; // Wyczyść pole
         taskElement.placeholder = 'Nowe zadanie';
-    }else{
+
+        getListFromLocalStorage();
+    } else {
         taskElement.placeholder = 'Wprowadź coś...';
     }
-}
 
-const saveAtLocalStorage = () =>{
-    const taskListArray = document.querySelectorAll(".task-list-li");
-    taskListArray.forEach((taskLink, index)=>{
-        const taskContent = taskLink.textContent;
-        localStorage.setItem(index, taskContent);
-    })
-}
+    // Przypisz placeholder po wyczyszczeniu pola
+    taskElement.placeholder = 'Wprowadź nowe zadanie';
+};
 
-taskButton.addEventListener("click", startSendingTask);
-matrixButton.addEventListener("click", showHideMatrix);
 document.addEventListener("keydown", (event)=>{
     if (event.key === 'Enter') {
         startSendingTask();
     }
-
-    if (event.key === 'Control'){
-        saveAtLocalStorage();
-    }
 })
 
-const getListFromLocalStorage = () => {
-    
-    for (let i = 0; i < localStorage.length-1; i++){
-        const task = localStorage.getItem(i);
-        const newTask = document.createElement("li");
-        newTask.classList.add("task-list-li");
-        newTask.innerText = task;
-        taskArea.appendChild(newTask);
-    }
+const clearList = () =>{
+    localStorage.clear();
+    getListFromLocalStorage();
 }
 
+const getListFromLocalStorage = () => {
+    taskArea.innerHTML = ''; 
+    const tasks = JSON.parse(localStorage.getItem("tasks")) || []; 
+    tasks.forEach((task) => {
+        const newTask = document.createElement("li");
+        newTask.classList.add("task-list-li");
+        newTask.innerText = task; 
+        taskArea.appendChild(newTask);
+        taskElement.placeholder = 'Nowe zadanie';
+    });
+};
+
+taskButton.addEventListener("click", startSendingTask);
+matrixButton.addEventListener("click", showHideMatrix);
+clearButton.addEventListener("click", clearList);
+
 getListFromLocalStorage();
+
 //localStorage.clear();
