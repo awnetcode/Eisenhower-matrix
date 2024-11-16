@@ -12,23 +12,25 @@
     </header>
     <textarea id="task" name="task"  rows="3" cols="50" placeholder="Nowe zadanie"></textarea>
     <div class="button-panel">
-        <button type="submit" class="task-button">
+        <button type="button" class="task-button">
             <span class="button-spark"></span>
             Zapisz zadanie
         </button>
-        <button type="submit" class="task-button">
+        <button type="button" class="task-button">
             <span class="button-spark"></span>
             Pokaż matrycę
         </button>     
-        <button type="submit" class="task-button">
+        <!-- <button type="button" class="task-button">
             <span class="button-spark"></span>
             Wyczyść listę
-        </button>     
+        </button>      -->
     </div>
     <main id="root" class="hidden">
     </main>
-    <ol class="task-area">
-    </ol>
+    <div class="task-area">
+        <ol class="task-list"></ol>
+        <div class="delete-buttons"></div>
+    </div>
     <script type="module" src="dom-creation.js"></script>
     <script type="module" src="app.js"></script>
 </body>
