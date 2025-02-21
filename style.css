@@ -10,6 +10,7 @@
     --fourth-quart-background: #ff0000;
 
     --main-shadow: 0px 0px 5px 5px white;
+    --element-shadow: 0 0 5px 5px black;
 }
 
 *{
@@ -21,7 +22,8 @@
 body{
     width: 100vw;
     min-height: 100vh;
-    background: linear-gradient(150deg, var(--main-background) , rgb(95, 93, 93), var(--main-background));
+    background-image: url('./assets/thomas-bormans.jpg');
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,9 +43,9 @@ body{
 #task{
     outline: none;
     padding: .5rem;
-    border-radius: .5rem;
     font-size: 1.2rem;
     text-align: center;
+    box-shadow: var(--element-shadow);
 }
 
 #task:focus{
@@ -58,7 +60,6 @@ body{
     position: absolute; 
     left: 50%;
     transform: translate(-50%, -35%);
-    /* border: 1px solid white; */
 }
 
 .task-sent{
@@ -77,27 +78,29 @@ body{
 }
 
 .button-panel{
+    min-width: 30%;
+    padding: 2rem;
+    box-shadow: var(--element-shadow);
     display: flex;
+    background: linear-gradient(150deg, var(--main-background) , rgb(95, 93, 93), var(--main-background));
     flex-wrap: wrap;
     justify-content: space-around;
-    row-gap: 1rem;
-    column-gap: 1rem;
+    gap: 1rem;
 }
 
 .task-button{
     font-size: 1.2rem;
     padding: .5rem;
+    box-shadow: var(--element-shadow);
     background: linear-gradient(150deg, var(--main-background) , rgb(95, 93, 93), var(--main-background));
-    border-radius: .5rem;
     color: white;
     cursor: pointer;
     border: 2px solid silver; 
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .task-button:hover .button-spark{
-    /* animation: button-change 2s infinite  linear; */
     animation: spark-slide .5s  linear;
     animation-delay: .5s;
 }
@@ -139,40 +142,45 @@ body{
 
 .first-quart{
     background: var(--first-quart-background);
-    opacity: .5;
+    opacity: .8;
 }
 
 .second-quart{
     background: var(--second-quart-background);
-    opacity: .5;
+    opacity: .8;
 }
 
 .third-quart{
     background: var(--third-quart-background);
-    opacity: .5;
+    opacity: .8;
 }
 
 .fourth-quart{
     background: var(--fourth-quart-background);
-    opacity: .5;
+    opacity: .8;
 }
 
 .quart-shiny{
-    box-shadow: var(--main-shadow);
+    box-shadow: 0 0 5px 5px black;
     opacity: 1;
 }
 
 .task-area{
+    padding: 1rem;
+    background: linear-gradient(150deg, var(--main-background) , rgb(95, 93, 93), var(--main-background));
+    box-shadow: var(--element-shadow);
+    min-width: 30%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: fit-content;
+    column-gap: 5rem;
 }
 
 .task-list, .delete-buttons{
     display: flex;
     flex-direction: column;
-    row-gap: .5rem;
+    row-gap: 1rem;
+    
 }
 
 .task-list{
@@ -189,11 +197,10 @@ body{
 }
 
 .delete-button{
-    font-size: 1.2rem;
-    padding: 0 .5rem;
+    padding: 0.5rem;
     background:  none;
     outline: 2px solid silver;
-    border-radius: .2rem;
+    box-shadow: 0 0 5px 5px black;
     color: white;
     cursor: pointer;
     border: none;
@@ -228,10 +235,20 @@ body{
         max-width: 90%;
     }
 
+    .button-panel{
+        width: 90%;
+        gap: 1rem;
+        padding: 2rem 0;
+    }
+
     .matrix div{
         width: 100%;
         height: auto;
         aspect-ratio: 1;
+    }
+
+    .task-area{
+        width: 90%;
     }
 }
 
